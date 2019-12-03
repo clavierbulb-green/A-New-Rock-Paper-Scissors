@@ -100,4 +100,12 @@ function game(rounds) {
     }
 }
 
-game(5);
+let playButtons = document.getElementsByClassName('play');
+for (let i = 0; i < playButtons.length; i++) {
+    let button = playButtons[i];
+    button.addEventListener('click', () => {
+        let pMove = button.textContent;
+        let cMove = computerPlay();
+        console.log(playRound(pMove, cMove));
+    });
+}

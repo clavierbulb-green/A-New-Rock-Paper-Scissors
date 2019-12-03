@@ -1,0 +1,76 @@
+:root {
+
+}
+
+.play_container {
+    position: absolute;
+    display: grid;
+    grid-gap: 10px;
+    box-sizing: border-box;
+}
+
+.play_container button {
+    border: none;
+    cursor: pointer;
+    opacity: 0.7;
+    font-size: 1.5rem;
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 55%;
+
+    border-radius: 10%;
+
+}
+
+button:hover {
+    opacity: 1;
+}
+
+
+/* BUTTON IMAGES */
+#rock {
+    background-image: url("../../assets/images/fist.png");
+    background-color: #536DFE;
+}
+
+#paper {
+    background-image: url("../../assets/images/paper.png");
+    background-color: #FFEE58;
+}
+
+#scissors {
+    background-image: url("../../assets/images/scissors.png");
+    background-color: #DD2C00;
+}
+
+
+@media (orientation: landscape) {
+    .play_container {
+        width: 80%;
+        height: 40%;
+        left: 10%;
+        top: 30%;       
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (orientation: portrait) {
+    .play_container {
+        width: 40%;
+        height: 80%;
+        left: 30%;
+        top: 10%;
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+/* IMAGE ATTRIBUTION */
+.attribution {
+    font-style: italic;
+    color: grey;
+}
+
+.attribution a {
+    text-decoration: none;
+}

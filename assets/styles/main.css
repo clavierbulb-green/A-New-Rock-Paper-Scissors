@@ -2,6 +2,43 @@
 
 }
 
+
+button {
+    border: none;
+    border-radius: 6%;
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+button:hover {
+    opacity: 1;
+}
+
+/* START BUTTON */
+#new_game {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+}
+
+#new_game #start {
+    letter-spacing: 0.4rem;
+    text-align: center;
+    background-color: #FFF;
+}
+
+#dimmer {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: #FFF9C4;
+    opacity: 0.5;
+    top: 0;
+    z-index: 99;
+}
+
 .play_container {
     position: absolute;
     display: grid;
@@ -10,21 +47,9 @@
 }
 
 .play_container button {
-    border: none;
-    cursor: pointer;
-    opacity: 0.7;
-    font-size: 1.5rem;
-
     background-repeat: no-repeat;
     background-position: center;
     background-size: 55%;
-
-    border-radius: 10%;
-
-}
-
-button:hover {
-    opacity: 1;
 }
 
 
@@ -53,6 +78,21 @@ button:hover {
         top: 30%;       
         grid-template-columns: repeat(3, 1fr);
     }
+    #new_game {
+        height: 20%;
+        top: 40%;
+    }
+    #new_game #start {
+        font-size: 7vw;
+    }
+
+    #scoreboard {
+        height: 12%;
+        width: 66%;
+        left: 17%;
+        top: 10%;
+        font-size: 2.5vw;
+    }
 }
 
 @media (orientation: portrait) {
@@ -63,14 +103,60 @@ button:hover {
         top: 10%;
         grid-template-columns: repeat(1, 1fr);
     }
+
+    #new_game {
+        height: 14%;
+        top: 43%;
+    }
+    #new_game #start {
+        font-size: 7vh;
+    }
+    
+    #scoreboard {
+        height: 6%;
+        width: 100%;
+        left: 0%;
+        top: 1%;
+        font-size: 2.5vh;
+    }
 }
 
 /* IMAGE ATTRIBUTION */
 .attribution {
     font-style: italic;
+    font-size: 0.9rem;
+    text-align: center;
     color: grey;
+    position: absolute;
+    width: 86%;
+    left: 7%;
+    bottom: 2%;
 }
 
 .attribution a {
     text-decoration: none;
+}
+
+
+#scoreboard {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+
+    position: absolute;
+}
+
+#scoreboard .score {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 90%;
+    letter-spacing: 0.4rem;
+    font-weight: bold;
+}
+
+.score span {
+    font-weight: normal;
 }

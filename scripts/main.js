@@ -34,12 +34,12 @@ function computerPlay() {
     return randomChoice(MOVES);
 }
 
-function playRound(playerSelection, computerSelection) {
+function playRound(playerMove, computerMove) {
     /* Plays a single round of Rock Paper Scissors; returns a string that 
      * declares the winner of the round. */
     
-    let pIndex = MOVES.indexOf(playerSelection);
-    let cIndex = MOVES.indexOf(computerSelection);
+    let pIndex = MOVES.indexOf(playerMove);
+    let cIndex = MOVES.indexOf(computerMove);
 
     let losesToPlayer = simplifyCircularIndex(pIndex - 1, MOVES.length);
     let winsOverPlayer= simplifyCircularIndex(pIndex + 1, MOVES.length);
@@ -59,15 +59,19 @@ function playRound(playerSelection, computerSelection) {
 function game(rounds) {
     /* Plays a game of Rock Paper Scissors for a given number of rounds. */
 
+    //TODO set up DOM scoreboard
     let playerScore = 0;
     let computerScore = 0;
 
     for (let r = 1; r <= rounds; r++) {
+        //TODO change to update DOM banner
         console.log(`Round ${r}:`)
 
         let compMove = computerPlay();
         let pMove = "";
         while (!MOVES.includes(pMove)) {
+            //TODO change to a banner that moves in from the side of the screen,
+            //asking the player to select a move
             pMove = prompt("Enter your move (rock, paper, or scissors)").toUpperCase();
         }
 
@@ -84,6 +88,8 @@ function game(rounds) {
             default:
                 console.log(`This round was a DRAW.`);
         }
+        //TODO set PLAYER_MOVE and COMP_MOVE to null
+        //TODO update DOM scoreboard instead
         console.log(`PLAYER: ${playerScore}, COMPUTER: ${computerScore}`);
         console.log(`\n`);
     }
@@ -104,8 +110,31 @@ let playButtons = document.getElementsByClassName('play');
 for (let i = 0; i < playButtons.length; i++) {
     let button = playButtons[i];
     button.addEventListener('click', () => {
-        let pMove = button.textContent;
+        //TODO change to updating global PLAYER_MOVE?
+        let pMove = button.id;
         let cMove = computerPlay();
         console.log(playRound(pMove, cMove));
     });
+}
+
+let startButton = document.getElementById("start");
+startButton.addEventListener("click", () => {
+    // hide dimmer and start dislpay (TODO put into separate function
+    const dimmer = document.getElementById("dimmer");
+    const newGameContainer = document.getElementById("new_game");
+    dimmer.style.display = "none";
+    newGameContainer.style.display = "none";
+
+    // TODO start a new game
+});
+
+
+function updateScore(pScore, cScore) {
+    /* Updates the DOM scoreboard with the player and computer scores */
+
+    const pScoreDisplay = document.querySelector('#player ');
+    const cScoreDisplay = document.querySelector('#computer'); 
+
+    pScoreDisplay.textContent = pScore;
+    cScoreDisplay.textContent = cScore;
 }

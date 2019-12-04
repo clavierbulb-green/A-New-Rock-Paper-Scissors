@@ -14,6 +14,7 @@ button:hover {
     opacity: 1;
 }
 
+
 /* START BUTTON */
 #new_game {
     display: flex;
@@ -69,7 +70,31 @@ button:hover {
     background-color: #DD2C00;
 }
 
+#scoreboard {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    position: absolute;
+}
 
+#scoreboard .score {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 90%;
+    letter-spacing: 0.4rem;
+    font-weight: bold;
+    width: 50%;
+    text-align: center;
+}
+
+.score span {
+    font-weight: normal;
+}
+
+/* MEDIA QUERIES */
 @media (orientation: landscape) {
     .play_container {
         width: 80%;
@@ -137,26 +162,3 @@ button:hover {
     text-decoration: none;
 }
 
-
-#scoreboard {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-
-    position: absolute;
-}
-
-#scoreboard .score {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    height: 90%;
-    letter-spacing: 0.4rem;
-    font-weight: bold;
-}
-
-.score span {
-    font-weight: normal;
-}

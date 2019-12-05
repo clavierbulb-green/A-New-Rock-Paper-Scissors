@@ -58,17 +58,17 @@ function playRound(playerMove, computerMove) {
 }
 
 
-let startButton = document.getElementById("start");
+const startButton = document.getElementById("start");
 startButton.addEventListener("click", () => {
 
-    // hide dimmer and start display (TODO put into separate function
+    // hide dimmer and start display
     const dimmer = document.getElementById("dimmer");
     const newGameContainer = document.getElementById("new_game");
-    dimmer.style.display = "none";
-    newGameContainer.style.display = "none";
-
+    dimmer.style.visibility = "hidden";
+    newGameContainer.style.visibility = "hidden";
 });
 
+/* SCOREBOARD */
 function computeNewScore(pScore, cScore, result) {
     /* Given a pair of player and computer scores, return a new pair of player 
      * and computer scores that reflects the result of a given round of play. */
@@ -99,6 +99,53 @@ function updateScoreBoard(pScore, cScore) {
 }
 
 
+/* MESSAGEBOARD */
+function formatResultMessage(pMove, cMove, result) {
+    switch (result) {
+        case PLAYER_WIN:
+            return `You WIN this round! ${pMove} beats ${cMove}.`;
+            break;
+        case COMP_WIN:
+            return `You LOSE this round! ${cMove} beats ${pMove}.`;
+            break;
+        case DRAW:
+            return `This round is a DRAW.`;
+    }
+}
+
+function formatVictoryMessage(pScore, cScore) {
+    /* Print result of game */
+    let message = "";
+
+    if (pScore > cScore) {
+        message += 'Congratulations! You WON this game.';
+    }
+    else if (pScore < cScore) {
+        message += 'Sorry! You LOST this game.';
+    }
+    else {
+        message += 'This game was a DRAW!';
+    }
+    return message += `${pScore} - ${cScore}`
+}
+
+function bringUpMessageBoard() {
+    const messageBoard = document.getElementById('messageboard');
+    const dimmer = document.getElementById('dimmer');
+    dimmer.style.visibility = "visible";
+    messageBoard.style.visibility = "visible";
+    dimmer.onclick = function() {
+        dimmer.style.visibility = "hidden";
+        messageBoard.style.visibility = "hidden";
+    }
+}
+
+function updateMessageBoard(message) {
+    const messageBoard = document.getElementById('messageboard');
+    messageBoard.firstChild.textContent = message;
+}
+
+
 let playButtons = document.getElementsByClassName('play');
 for (let i = 0; i < playButtons.length; i++) {
     let button = playButtons[i];
@@ -110,13 +157,15 @@ for (let i = 0; i < playButtons.length; i++) {
         
         [pScore, cScore] = computeNewScore(pScore, cScore, result);
         updateScoreBoard(pScore, cScore);
-        alertResult(pMove, cMove, result); //TODO
+        let message = formatResultMessage(pMove, cMove, result);
         rounds++;
 
         if (rounds === 5) {
-            alertVictory(pScore, cScore); //TODO
+            message = formatVictoryMessage(pScore, cScore);
             clear();
         }
+        updateMessageBoard(message);
+        bringUpMessageBoard();
     });
 }
 
@@ -127,29 +176,3 @@ function clear() {
     rounds = 0;
 }
 
-function alertResult(pMove, cMove, result) {
-    switch (result) {
-        case PLAYER_WIN:
-            alert(`You WON this round! ${pMove} beats ${cMove}.`);
-            break;
-        case COMP_WIN:
-            alert(`You LOST this round! ${cMove} beats ${pMove}.`);
-            break;
-        case DRAW:
-            alert(`This round was a DRAW.`);
-    }
-}
-
-function alertVictory(pScore, cScore) {
-    /* Print result of game */
-
-    if (pScore > cScore) {
-        alert(`Congratulations! You won this game.`);
-    }
-    else if (pScore < cScore) {
-        alert(`Sorry! You lost this game.`);
-    }
-    else {
-        alert(`This game was a draw!`);
-    }
-}

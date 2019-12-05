@@ -1,4 +1,4 @@
-# Rock Paper Scissors
+# [Rock Paper Scissors](https://clavierbulb-green.github.io/A-New-Rock-Paper-Scissors/)
 ---
 
 A simple 5-round game of **Rock Paper Scissors** playable in the browser.
